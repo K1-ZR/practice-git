@@ -1,3 +1,5 @@
+I use this page to store and organize what I learned about Git.  
+
 * [Installation](https://github.com/K1-ZR/practice-git/wiki#installation)  
 * [Start](https://github.com/K1-ZR/practice-git/wiki#start)  
 * [Submitting a change](https://github.com/K1-ZR/practice-git/wiki#submitting-a-change)  
@@ -8,7 +10,6 @@
 * [Tag](https://github.com/K1-ZR/practice-git/wiki#tag)  
 * [Bug search](https://github.com/K1-ZR/practice-git/wiki#bug-search) 
 
-I use this Wiki page to store and organize what I learned about Git.  
 # Installation
 * install Git from [here](https://git-scm.com/).
 # Start
