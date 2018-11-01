@@ -75,7 +75,7 @@ git reset <file_name>
 ```shell
 git checkout -- <file_name>
 ```
-## Branch
+# Branch
 * create a branch. Git clones your current branch.
 ```shell
 git branch <branch_name>
