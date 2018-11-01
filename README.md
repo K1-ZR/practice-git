@@ -170,4 +170,74 @@ git bisect bad
 git bisect good <commit_hash_string>
 ```
 Git suggest the next commit that needs to be checked. This process will be repeated 
-until Git narrows commits down to the problematic commit.
+until Git narrows commits down to the problematic commit.  
+# Examples  
+## Publishing an existing repository on a remote server
+* First, create a new repository on remote serve without README, .gitignore or License. 
+```shell
+# change into the `my-repo` directory
+cd <repo_dir>
+
+# initialize Git
+git init 
+
+# stage changes
+git add <file_name>
+
+# take a snapshot of the staging area
+git commit -m '<message>'
+
+# provide a remote server for it
+git remote add origin <remote_address>
+
+# push changes to the remote server
+git push --set-upstream origin master
+```
+## Contribute to an existing repository
+```shell
+# download a repository on a remote server to your local machine
+# this makes a repo dir in your local machine
+git clone <remote address>
+
+# change into the `repo` directory
+cd repo
+
+# create a new branch to store any new changes
+git branch <branch_name>
+
+# switch to that branch 
+git checkout <branch_name>
+
+# make changes
+
+# stage the changed files
+git add <file_name>
+
+# commit changes
+git commit -m '<message>'
+
+# push changes to the remote server
+git push --set-upstream origin <branch_name>
+```
+## Contribute to an existing branch on GitHub
+```shell
+# change into the `repo` directory
+cd repo
+
+# update all remote tracking branches, and the currently checked out branch
+git pull
+
+# change into the existing branch called `feature-a`
+git checkout <branch_name>
+
+# make changes
+
+# stage the changed file
+git add <file_name>
+
+# take a snapshot of the staging area
+git commit -m '<message>'
+
+# push changes to the remote server
+git push
+```
