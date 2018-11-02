@@ -190,7 +190,25 @@ I have:
    * a `local-repo` on my PC  
    * another `local-repo` on my laptop  
    * a `remote-repo`  
-I do:
+
+I always make sure that my `remote-repo` is the most updated one.
+
+when I use my `local-repo` follow these steps
+```shell
+# check if any change is made in local-repo
+git status
+
+# list all local and remote branches
+git branch -a
+
+# then do either 1 or 2
+
+# 1: bring the most updated version to my local-repo master
+git pull origin master
+
+# 2: bring the working remote-branch to my local-repo local-branch (use the same name for both branches)
+git pull origin remote-branch:local-branch
+```
 
 ## Publishing an existing repository on a remote server
 * First, create a new repository on remote serve without README, .gitignore or License. 
