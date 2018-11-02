@@ -127,15 +127,14 @@ git remote [-V]
 ```
 * pull changes to a local directory
 ```shell
-git pull origin master
-# pull from origin remote, master branch
+git pull <remote-name> <local-branch-name>
+#        origin        master 
 ```
 * push changes to a remote server
 ```shell
-git push [--all | --mirror] origin master
-# push to origin remote, master branch
-# -- all : Push all branches (i.e. refs under refs/heads/)
-# --mirror : all refs under refs/ (which includes but is not limited to refs/heads/, refs/remotes/, and refs/tags/)
+git push <remote-name> <local-branch-name> 
+#        origin        master 
+# The remote branch is automatically created when you push it to the remote server.
 ```
 # Tag
 Its difference with the branch is that you cannot commit to a tag.
