@@ -182,7 +182,16 @@ git bisect good <commit_hash_string>
 ```
 Git suggest the next commit that needs to be checked. This process will be repeated 
 until Git narrows commits down to the problematic commit.  
+
 # Scenarios  
+
+## My work flow
+I have:  
+    * a `local-repo` on my PC  
+    * another `local-repo` on my laptop  
+    * a `remote-repo`  
+I do:
+
 ## Publishing an existing repository on a remote server
 * First, create a new repository on remote serve without README, .gitignore or License. 
 ```shell
