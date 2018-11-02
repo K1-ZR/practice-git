@@ -127,7 +127,7 @@ git remote [-V]
 ```
 * pull changes to a local directory
 ```shell
-git pull <remote-name> <local-branch-name>
+git pull <remote-name> <branch-name>
 #        origin        master 
 ```
 * push changes to a remote server
