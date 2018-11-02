@@ -9,7 +9,7 @@ I use this page to store and organize what I learned about Git.
 * [Remote server](https://github.com/K1-ZR/practice-git/blob/master/README.md#remote-server)  
 * [Tag](https://github.com/K1-ZR/practice-git/blob/master/README.md#tag)  
 * [Bug search](https://github.com/K1-ZR/practice-git/blob/master/README.md#bug-search)
-* [Examples](https://github.com/K1-ZR/practice-git/blob/master/README.md#examples)
+* [Scenarios](https://github.com/K1-ZR/practice-git/blob/master/README.md#scenarios)
 
 # Installation
 * install Git from [here](https://git-scm.com/).
@@ -125,24 +125,21 @@ git remote rm <remote_name>
 ```shell
 git remote [-V]
 ```
+* list branches on remote
+```shell
+git remote show <remote-name>
+```
 * pull changes to a local directory
 ```shell
 git pull <remote-name> <remote_branch-name>:<local_branch_name>
 #        origin        master 
+#        origin        myBranch:myBranch (use the same name)
 ```
 * push changes to a remote server
 ```shell
 git push <remote-name> <local-branch-name>:<remote_branch_name>
 #        origin        master 
 #        origin        myBranch:myBranch (use the same name)
-```
-* fetch and push to a remote branch
-```shell
-git fetch <remote_name>
-
-git checkout <remote_name>/<branch_name>
-
-git push origin HEAD:refs/heads/<branch_name>
 ```
 # Tag
 Its difference with the branch is that you cannot commit to a tag.
@@ -184,7 +181,7 @@ git bisect good <commit_hash_string>
 ```
 Git suggest the next commit that needs to be checked. This process will be repeated 
 until Git narrows commits down to the problematic commit.  
-# Examples  
+# Scenarios  
 ## Publishing an existing repository on a remote server
 * First, create a new repository on remote serve without README, .gitignore or License. 
 ```shell
@@ -204,7 +201,7 @@ git commit -m '<message>'
 git remote add origin <remote_address>
 
 # push changes to the remote server
-git push --set-upstream origin master
+git push origin master
 ```
 ## Contribute to an existing repository
 ```shell
