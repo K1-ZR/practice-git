@@ -72,6 +72,10 @@ git blame <file_name> -L<line_number>
 ```shell
 git reset <file_name>
 ```
+* Undoes all commits after commit, preserving changes locally
+```shell
+git reset <commit_hash_string>
+```
 * Fetch the last commit of the file
 ```shell
 git checkout -- <file_name>
