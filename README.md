@@ -187,7 +187,7 @@ until Git narrows commits down to the problematic commit.
 
 ## My work flow
 I have:  
-    * a `local-repo` on my PC  
+   * a `local-repo` on my PC  
 * another `local-repo` on my laptop  
 * a `remote-repo`  
 I do:
