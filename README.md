@@ -267,7 +267,7 @@ when I start from one of my `local-repo`s, I follow these steps
 # check if any changes are made in local-repo
 git status
 
-# 1: update my local-master
+# update my local-master
 git pull <remote> master
 
 # list all local and remote branches
@@ -281,7 +281,7 @@ git pull <remote> <remote-branch>:<local-branch>
 # commit
 
 # push changes to the working branch
-# git push <remote> <local-branch>:<remote-branch>
+git push <remote> <local-branch>:<remote-branch>
 
 # got to GitHub, working branch and send a pull-request
 
