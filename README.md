@@ -283,7 +283,7 @@ git pull <remote> <remote-branch>:<local-branch>
 # push changes to the working branch
 git push <remote> <local-branch>:<remote-branch>
 
-# got to GitHub, working branch and send a pull-request
+# go to GitHub, working branch and send a pull-request
 
 # accept the changes into remote-master
 ```
