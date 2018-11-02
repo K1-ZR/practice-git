@@ -185,31 +185,6 @@ until Git narrows commits down to the problematic commit.
 
 # Scenarios  
 
-## My work flow
-I have:  
-   * a `local-repo` on my PC  
-   * another `local-repo` on my laptop  
-   * a `remote-repo`  
-
-I always make sure that my `remote-repo` is the most updated one.
-
-when I use my `local-repo` follow these steps
-```shell
-# check if any change is made in local-repo
-git status
-
-# list all local and remote branches
-git branch -a
-
-# then do either 1 or 2
-
-# 1: bring the most updated version to my local-repo master
-git pull origin master
-
-# 2: bring the working remote-branch to my local-repo local-branch (use the same name for both branches)
-git pull origin remote-branch:local-branch
-```
-
 ## Publishing an existing repository on a remote server
 * First, create a new repository on remote serve without README, .gitignore or License. 
 ```shell
@@ -279,3 +254,37 @@ git commit -m '<message>'
 # push changes to the remote server
 git push
 ```
+## My work flow when I work on a branch
+I have:  
+   * a `local-repo` on my PC  
+   * another `local-repo` on my laptop  
+   * a `remote-repo`  
+
+I always make sure that my `remote-repo` is the most updated one.
+
+when I start from one of my `local-repo`s, I follow these steps
+```shell
+# check if any changes are made in local-repo
+git status
+
+# 1: update my local-master
+git pull <remote> master
+
+# list all local and remote branches
+git branch -a
+
+# bring the working remote-branch to my local-repo local-branch (use the same name for both branches)
+git pull <remote> <remote-branch>:<local-branch>
+
+# make changes
+# stage
+# commit
+
+# push changes to the working branch
+# git push <remote> <local-branch>:<remote-branch>
+
+# got to GitHub, working branch and send a pull-request
+
+# accept the changes into remote-master
+```
+
