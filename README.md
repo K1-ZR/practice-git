@@ -108,14 +108,14 @@ push &#x2191;  &#x2193; pull
 local directory
 * clone an existing remote repo to your local directory
 ```shell
+# makes a directory with the repo name
 git clone <remote_URL>
-# it makes a directory with the repo name
 ```
 * add a remote server to your local directory
 multiple remote can be added to a local directory
 ```shell
 git remote add <remote_name> <remote_URL>
-#               origin
+#               origin       https...
 ```
 * remove a remote
 ```shell
