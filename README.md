@@ -132,15 +132,15 @@ git pull <remote-name> <branch-name>
 ```
 * push changes to a remote server
 ```shell
-git push <remote-name> <local-branch-name> 
+git push <remote-name> <local-branch-name>:<remote_branch_name>
 #        origin        master 
-# The remote branch is automatically created when you push it to the remote server.
+#        origin        myBranch:myBranch
 ```
 * fetch and push to a remote branch
 ```shell
-git fetch
+git fetch <remote_name>
 
-git checkout origin/<branch_name>
+git checkout <origin>/<branch_name>
 
 git push origin HEAD:refs/heads/<branch_name>
 ```
