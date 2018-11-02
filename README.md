@@ -136,6 +136,14 @@ git push <remote-name> <local-branch-name>
 #        origin        master 
 # The remote branch is automatically created when you push it to the remote server.
 ```
+* fetch and push to a remote branch
+```shell
+git fetch
+
+git checkout origin/<branch_name>
+
+git push origin HEAD:refs/heads/<branch_name>
+```
 # Tag
 Its difference with the branch is that you cannot commit to a tag.
 * setting a tag
