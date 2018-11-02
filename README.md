@@ -127,20 +127,20 @@ git remote [-V]
 ```
 * pull changes to a local directory
 ```shell
-git pull <remote-name> <branch-name>
+git pull <remote-name> <remote_branch-name>:<local_branch_name>
 #        origin        master 
 ```
 * push changes to a remote server
 ```shell
 git push <remote-name> <local-branch-name>:<remote_branch_name>
 #        origin        master 
-#        origin        myBranch:myBranch
+#        origin        myBranch:myBranch (use the same name)
 ```
 * fetch and push to a remote branch
 ```shell
 git fetch <remote_name>
 
-git checkout <origin>/<branch_name>
+git checkout <remote_name>/<branch_name>
 
 git push origin HEAD:refs/heads/<branch_name>
 ```
