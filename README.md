@@ -188,8 +188,8 @@ until Git narrows commits down to the problematic commit.
 ## My work flow
 I have:  
     * a `local-repo` on my PC  
-    * another `local-repo` on my laptop  
-    * a `remote-repo`  
+* another `local-repo` on my laptop  
+* a `remote-repo`  
 I do:
 
 ## Publishing an existing repository on a remote server
