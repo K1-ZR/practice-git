@@ -88,7 +88,7 @@ git branch <branch_name>
 * list branches
 ```shell
 git branch [-a]
-# -a
+# -a: list local and remote branches
 ```
 * jump to a branch. Git fetches the last commit of the branch.
 ```shell
