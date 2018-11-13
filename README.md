@@ -287,4 +287,12 @@ git push <remote> <local-branch>:<remote-branch>
 
 # accept the changes into remote-master
 ```
-
+# Relevant
+* to modify VSCode extnesions:
+```cpp
+"[git-commit]": {
+    "editor.rulers": [
+      72
+    ]
+  }
+```
