@@ -103,6 +103,13 @@ git merge <branch_name>
 ```shell
 git branch -d <branch_name>
 ```
+
+```shell
+# Deletes all stale remote-tracking branches. 
+# These stale branches have already been removed from the remote, 
+# but are still locally available in "remotes/<name>".
+git remote prune origin
+```
 # Remote server
 remote server (usually called as origin)  
 push &#x2191;  &#x2193; pull  
@@ -286,6 +293,11 @@ git push <remote> <local-branch>:<remote-branch>
 # go to GitHub, working branch and send a pull-request
 
 # accept the changes into remote-master
+
+# delete the branch from GitHub
+
+# then at local
+git remote prune origin
 ```
 # Relevant
 * to modify VSCode extnesions:
