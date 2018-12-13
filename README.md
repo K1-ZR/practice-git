@@ -62,6 +62,14 @@ git diff HEAD
 ```shell
 git diff HEAD --staged
 ```
+* for a specific file, if you want to see what you haven't git added yet
+```shell
+git diff <myfile>
+```
+* or if you want to see already added changes
+```shell
+git diff --cached <myfile>
+```
 * Show who made the changes
 ```shell
 git blame <file_name> -L<line_number>
