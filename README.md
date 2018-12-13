@@ -56,19 +56,19 @@ git show <commit_hash_string>
 ```
 * show difference between unstaged changes and HEAD. HEAD is the tip of the current branch.
 ```shell
-git diff HEAD
+git diff HEAD <file_name>
 ```
 * show the difference between staged changes and HEAD.
 ```shell
-git diff HEAD --staged
+git diff HEAD --staged <file_name>
 ```
-* for a specific file, if you want to see what you haven't git added yet
+* if you want to see what you haven't git added yet
 ```shell
-git diff <myfile>
+git diff <file_name>
 ```
 * or if you want to see already added changes
 ```shell
-git diff --cached <myfile>
+git diff --cached <file_name>
 ```
 * Show who made the changes
 ```shell
