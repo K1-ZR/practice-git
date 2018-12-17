@@ -201,47 +201,47 @@ until Git narrows commits down to the problematic commit.
 # Scenarios  
 
 ## Publishing an existing repository on a remote server
-* First, create a new repository on remote serve without README, .gitignore or License. 
+* Step 1: create a new repository on remote serve without README, .gitignore or License. Then:
 ```shell
-# change into the `my-repo` directory
+# Step 2: change directory into the <my_repo> directory
 cd <repo_dir>
 
-# initialize Git
+# Step 3: initialize Git
 git init 
 
-# stage changes
-git add <file_name>
+# Step 4: stage changes
+git add -A
 
-# take a snapshot of the staging area
+# Step 5: commit changes
 git commit -m '<message>'
 
-# provide a remote server for it
+# Step 6: provide a remote server for your local repository
 git remote add origin <remote_address>
 
-# push changes to the remote server
+# Step 7: push changes to the remote server
 git push origin master
 ```
 ## Contribute to an existing repository
 ```shell
-# download a repository on a remote server to your local machine
-# this makes a repo dir in your local machine
+# Step 1: download a repository on a remote server to your local machine
 git clone <remote address>
+# this makes a repo dir in your local machine
 
-# change into the `repo` directory
+# Step 2: change directory to the <my_repo> directory
 cd repo
 
-# create a new branch to store any new changes
+# Step 3: create a new branch to store any new changes
 git branch <branch_name>
 
-# switch to that branch 
+# Step 4: switch to that branch 
 git checkout <branch_name>
 
-# make changes
+# Step 5: make changes
 
-# stage the changed files
-git add <file_name>
+# Step 6: stage changes
+git add -A
 
-# commit changes
+# Step 7: commit changes
 git commit -m '<message>'
 
 # push changes to the remote server
@@ -276,7 +276,6 @@ I have:
    * a `remote-repo`  
 
 I always make sure that my `remote-repo` is updated.
-
 when I start from one of my `local-repo`s, I follow these steps
 ```shell
 # check if any changes are made in local-repo
