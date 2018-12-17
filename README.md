@@ -278,32 +278,34 @@ I have:
 I always make sure that my `remote-repo` is updated.
 when I start from one of my `local-repo`s, I follow these steps
 ```shell
-# check if any changes are made in local-repo
+# step 1: make a branch on remote-repo
+
+# step 2: check if any changes are made in local-repo
 git status
 
-# update my local-master
+# step 3: update my local-master
 git pull <remote> master
 
-# list all local and remote branches
-git branch -a
+# step 4: list all remote branches
+$ git remote show <remote>
 
-# bring the working remote-branch to my local-repo local-branch (use the same name for both branches)
+# step 5: bring the working remote-branch to my local-repo local-branch (use the same name for both branches)
 git pull <remote> <remote-branch>:<local-branch>
 
-# make changes
-# stage
-# commit
+# step 6: make changes
+# step 7: stage
+# step 8: commit
 
-# push changes to the working branch
+# step 9: push changes to the working branch
 git push <remote> <local-branch>:<remote-branch>
 
-# go to GitHub, working branch and send a pull-request
+# step 10: go to remote-repo, i.e. GitHub, working branch and send a pull-request
 
-# accept the changes into remote-master
+# step 11: accept the changes into remote-master
 
-# delete the branch from GitHub
+# step 12: delete the branch from remote-repo, i.e. GitHub
 
-# then at local
+# step 13: then at local
 git remote prune origin
 ```
 # Relevant
