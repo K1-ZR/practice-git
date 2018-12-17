@@ -275,7 +275,7 @@ I have:
    * another `local-repo` on my laptop  
    * a `remote-repo`  
 
-I always make sure that my `remote-repo` is the most updated one.
+I always make sure that my `remote-repo` is updated.
 
 when I start from one of my `local-repo`s, I follow these steps
 ```shell
