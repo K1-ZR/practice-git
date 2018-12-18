@@ -303,10 +303,12 @@ git push <remote> <local-branch>:<remote-branch>
 
 # step 11: accept the changes into remote-master
 
-# step 12: delete the branch from remote-repo, i.e. GitHub
+# step 12: then at local
+git pull origin master
 
-# step 13: then at local
-git remote prune origin
+# step 13: remove local and remote branches
+$ git push --delete <remote_name> <branch_name>
+$ git branch -d <branch_name>
 ```
 # Relevant
 * to modify VSCode extnesions:
