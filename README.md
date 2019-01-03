@@ -1,4 +1,4 @@
-I use this page to store and organize what I learned about Git.  
+I use this page to archive and organize what I learned about Git.  
 
 * [Installation](https://github.com/K1-ZR/practice-git/blob/master/README.md#installation)  
 * [Start](https://github.com/K1-ZR/practice-git/blob/master/README.md#start)  
