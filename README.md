@@ -286,9 +286,6 @@ git status
 # step 3: update my local-master
 git pull <remote> master
 
-# step 4: list all remote branches
-$ git remote show <remote>
-
 # step 5: bring the working remote-branch to my local-repo local-branch (use the same name for both branches)
 git pull <remote> <remote-branch>:<local-branch>
 
