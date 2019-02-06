@@ -146,6 +146,7 @@ git remote [-V]
 git remote show <remote-name>
 ```
 * pull changes to a local directory
+a pull is a fetch and a merge.
 ```shell
 git pull <remote-name> <remote_branch-name>:<local_branch_name>
 #        origin        master 
@@ -244,6 +245,8 @@ when I start from one of my `local-repo`s, I follow these steps
 # step 2: check if any changes are made in local-repo
 git status
 # step 3: update my local-master
+git remote update #to bring your remote refs up to date
+git status -uno #whether the branch you are tracking is ahead, behind or has diverged
 git pull <remote> master
 # step 5: bring the working remote-branch to my local-repo local-branch (use the same name for both branches)
 git pull <remote> <remote-branch>:<local-branch>
