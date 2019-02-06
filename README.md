@@ -203,70 +203,32 @@ until Git narrows commits down to the problematic commit.
 ## Publishing an existing repository on a remote server
 * Step 1: create a new repository on remote serve without README, .gitignore or License. Then:
 ```shell
-# Step 2: change directory into the <my_repo> directory
 cd <repo_dir>
-
-# Step 3: initialize Git
 git init 
-
-# Step 4: stage changes
-git add -A
-
-# Step 5: commit changes
-git commit -m '<message>'
-
-# Step 6: provide a remote server for your local repository
 git remote add origin <remote_address>
-
-# Step 7: push changes to the remote server
+git add -A
+git commit -m '<message>'
 git push origin master
 ```
 ## Contribute to an existing repository
 ```shell
-# Step 1: download a repository on a remote server to your local machine
 git clone <remote address>
-# this makes a repo dir in your local machine
-
-# Step 2: change directory to the <my_repo> directory
-cd repo
-
-# Step 3: create a new branch to store any new changes
+cd <repo_dir>
 git branch <branch_name>
-
-# Step 4: switch to that branch 
 git checkout <branch_name>
-
-# Step 5: make changes
-
-# Step 6: stage changes
+# make changes
 git add -A
-
-# Step 7: commit changes
 git commit -m '<message>'
-
-# push changes to the remote server
 git push --set-upstream origin <branch_name>
 ```
 ## Contribute to an existing branch on GitHub
 ```shell
-# change into the `repo` directory
-cd repo
-
-# update all remote tracking branches, and the currently checked out branch
-git pull
-
-# change into the existing branch called `feature-a`
+cd <repo_dir>
+git pull # update all remote branches
 git checkout <branch_name>
-
 # make changes
-
-# stage the changed file
-git add <file_name>
-
-# take a snapshot of the staging area
+git add -A
 git commit -m '<message>'
-
-# push changes to the remote server
 git push
 ```
 ## My work flow when I work on a branch
@@ -279,30 +241,21 @@ I always make sure that my `remote-repo` is updated.
 when I start from one of my `local-repo`s, I follow these steps
 ```shell
 # step 1: make a branch on remote-repo
-
 # step 2: check if any changes are made in local-repo
 git status
-
 # step 3: update my local-master
 git pull <remote> master
-
 # step 5: bring the working remote-branch to my local-repo local-branch (use the same name for both branches)
 git pull <remote> <remote-branch>:<local-branch>
-
 # step 6: make changes
 # step 7: stage
 # step 8: commit
-
 # step 9: push changes to the working branch
 git push <remote> <local-branch>:<remote-branch>
-
 # step 10: go to remote-repo, i.e. GitHub, working branch and send a pull-request
-
 # step 11: accept the changes into remote-master
-
 # step 12: then at local
 git pull origin master
-
 # step 13: remove local and remote branches
 $ git push --delete <remote_name> <branch_name>
 $ git branch -d <branch_name>
