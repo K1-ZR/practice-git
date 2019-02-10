@@ -260,7 +260,7 @@ git push <remote> <local-branch>:<remote-branch>
 git pull origin master
 # step 13: remove local and remote branches
 $ git push --delete <remote_name> <branch_name>
-$ git branch -d <branch_name>
+$ git branch -D <branch_name>
 $ git remote prune origin
 # Deletes all stale remote-tracking branches. These stale branches have already been removed from the remote repository referenced by <name>, but are still locally available in "remotes/<name>".
 ```
