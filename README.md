@@ -244,10 +244,9 @@ when I start from one of my `local-repo`s, I follow these steps
 # step 1: make a branch on remote-repo
 # step 2: check if any changes are made in local-repo
 git status
-# step 3: update my local-master
-git remote update #to bring your remote refs up to date
-git status -uno #whether the branch you are tracking is ahead, behind or has diverged
-git pull <remote> master
+# step 3: update my local-branch
+git remote update # to bring your remote refs up to date
+git status -uno # whether the branch you are tracking is ahead, behind or has diverged
 # step 5: bring the working remote-branch to my local-repo local-branch (use the same name for both branches)
 git pull <remote> <remote-branch>:<local-branch>
 # step 6: make changes
@@ -262,6 +261,8 @@ git pull origin master
 # step 13: remove local and remote branches
 $ git push --delete <remote_name> <branch_name>
 $ git branch -d <branch_name>
+$ git remote prune origin
+# Deletes all stale remote-tracking branches. These stale branches have already been removed from the remote repository referenced by <name>, but are still locally available in "remotes/<name>".
 ```
 # Relevant
 * to modify VSCode extnesions:
