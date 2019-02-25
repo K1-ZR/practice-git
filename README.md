@@ -201,37 +201,6 @@ until Git narrows commits down to the problematic commit.
 
 # Scenarios  
 
-## Publishing an existing repository on a remote server
-* Step 1: create a new repository on remote serve without README, .gitignore or License. Then:
-```shell
-cd <repo_dir>
-git init 
-git remote add origin <remote_address>
-git add -A
-git commit -m '<message>'
-git push origin master
-```
-## Contribute to an existing repository
-```shell
-git clone <remote address>
-cd <repo_dir>
-git branch <branch_name>
-git checkout <branch_name>
-# make changes
-git add -A
-git commit -m '<message>'
-git push --set-upstream origin <branch_name>
-```
-## Contribute to an existing branch on GitHub
-```shell
-cd <repo_dir>
-git pull # update all remote branches
-git checkout <branch_name>
-# make changes
-git add -A
-git commit -m '<message>'
-git push
-```
 ## My work flow when I work on a branch
 I have:  
    * a `local-repo` on my PC  
