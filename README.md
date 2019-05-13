@@ -182,7 +182,8 @@ git push origin <tag_name>
 ```shell
 git checkout <tag_name>
 ```
-# Bug search
+# Bug Fix
+## Bug search
 * in order to find the problematic commit, follow these:
 it uses bisect (binary search commit)
 ```shell
@@ -200,6 +201,19 @@ git bisect good <commit_hash_string>
 Git suggest the next commit that needs to be checked. This process will be repeated 
 until Git narrows commits down to the problematic commit.  
 
+## Correcting bugs
+Checkout where the bug is added
+```shell
+git checkout <commit_hash_string>
+```
+Git automatically create a detached branch from that commit.
+Fix the bug
+Create a new branch where you are, then switch to master and merge it:
+```shell
+git branch my-temporary-work
+git checkout master
+git merge my-temporary-work
+```
 # Scenarios  
 
 ## My work flow when I work on a branch
