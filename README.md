@@ -202,13 +202,14 @@ Git suggest the next commit that needs to be checked. This process will be repea
 until Git narrows commits down to the problematic commit.  
 
 ## Correcting bugs
-Checkout where the bug is added
+* Checkout where the bug is added
 ```shell
 git checkout <commit_hash_string>
 ```
 Git automatically create a detached branch from that commit.
-Fix the bug
-Create a new branch where you are, then switch to master and merge it:
+* Make changes
+* commit changes
+* Create a new branch where you are, then switch to master and merge it:
 ```shell
 git branch my-temporary-work
 git checkout master
