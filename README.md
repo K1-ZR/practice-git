@@ -163,7 +163,8 @@ Its difference with the branch is that you cannot commit to a tag.
 * setting a tag
 ```shell
 git tag -a <tage_name> [commit_hash_string] -m '<message>'
-# if commit hash is omitted, tag is set to the current commit 
+# the tag will refer to the commit of the branch you are currently on
+# if commit hash is omitted, the tag will refer to the most recent commit
 ```
 * show tags
 ```shell
