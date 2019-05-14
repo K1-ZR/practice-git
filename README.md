@@ -120,7 +120,7 @@ git merge <branch_name>
 ```shell
 git branch -d <branch_name>
 ```
-
+* 
 ```shell
 # Deletes all stale remote-tracking branches. 
 # These stale branches have already been removed from the remote, 
