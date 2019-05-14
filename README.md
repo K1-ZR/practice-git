@@ -70,6 +70,15 @@ git diff <file_name>
 ```shell
 git diff --cached <file_name>
 ```
+**NOTE**
+Git diff header is in the form of @@ <preimage-file-range> <postimage-file-range> @@   
+* <preimage-file-range> is in the form -<start-line>,<number-of-lines>  
+* <postimage-file-range> is in the form of +<start-line>,<number-of-lines>.  
+
+  * ' ': The lines common to both files.
+  * '+': A line was added here to the first file.
+  * '-': A line was removed here from the first file.
+
 * Show who made the changes
 ```shell
 git blame <file_name> -L<line_number>
