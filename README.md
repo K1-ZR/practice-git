@@ -1,41 +1,60 @@
 I use this page for archiving what I learned about Git,
  mostly from [Pro Git]{https://git-scm.com/book/en/v2}. 
 
-[Installation](#Installation)
+- [Install Git](#Install-Git)
+- [Basics](#Basics)
+- [Start](#Start)
+  - [From a](#From-a)
+  - [From](#From)
+- [Submit Changes](#Submit-Changes)
+- [Show changes](#Show-changes)
+- [Undo changes](#Undo-changes)
+- [Branch](#Branch)
+- [Remote server](#Remote-server)
+- [Tag](#Tag)
+- [Bug Fix](#Bug-Fix)
+  - [Bug search](#Bug-search)
+  - [Correcting bugs](#Correcting-bugs)
 
-
-# Installation
+<!-- --------------------------------------------------------------- -->
+# Install Git
 Install Git from [git-scm.com](https://git-scm.com/).
-  
-# Start
-* change directory
-```shell
-cd <repo_dir>
-```
-* initialize Git 
-```shell
-git init
-```
-* check git status, it is always useful
+<!-- --------------------------------------------------------------- -->
+# Basics
+
+Check files status
 ```shell
 git status
 ```
-* get help
+Get help 
 ```shell
-git help [keyword]
-#        blame
+git help <keyword>
 ```
-# Submit a change
+<!-- --------------------------------------------------------------- -->
+# Start
+## From a
+Change directory
+```shell
+cd <repository-directory>
+```
+Initialize Git 
+```shell
+git init
+```
+## From
+
+<!-- --------------------------------------------------------------- -->
+# Submit Changes
 Any changes in directory    &#x27F6;    Stage    &#x27F6;    Commit  
 the **staged** changes means Git tracks them  
 the **committed** changes means Git archives them
-* Stage a change
+
+Stage changes
 ```shell
 git add <file name>
 #       -A or --all 
-#       all files
 ```
-* commit a change
+Commit changes
 ```shell
 git commit -m '<message>'
 ```
