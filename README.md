@@ -1,18 +1,12 @@
-I use this page to archive and organize what I learned about Git.  
+I use this page for archiving what I learned about Git,
+ mostly from [Pro Git]{https://git-scm.com/book/en/v2}. 
 
-* [Installation](https://github.com/K1-ZR/practice-git/blob/master/README.md#installation)  
-* [Start](https://github.com/K1-ZR/practice-git/blob/master/README.md#start)  
-* [Submitting a change](https://github.com/K1-ZR/practice-git/blob/master/README.md#submitting-a-change)  
-* [Show changes](https://github.com/K1-ZR/practice-git/blob/master/README.md#show-changes)  
-* [Undo changes](https://github.com/K1-ZR/practice-git/blob/master/README.md#undo-changes)  
-* [Branch](https://github.com/K1-ZR/practice-git/blob/master/README.md#branch)  
-* [Remote server](https://github.com/K1-ZR/practice-git/blob/master/README.md#remote-server)  
-* [Tag](https://github.com/K1-ZR/practice-git/blob/master/README.md#tag)  
-* [Bug search](https://github.com/K1-ZR/practice-git/blob/master/README.md#bug-search)
-* [Scenarios](https://github.com/K1-ZR/practice-git/blob/master/README.md#scenarios)
+[Installation](#Installation)
+
 
 # Installation
-* install Git from [here](https://git-scm.com/).
+Install Git from [git-scm.com](https://git-scm.com/).
+  
 # Start
 * change directory
 ```shell
@@ -223,47 +217,4 @@ Git automatically create a detached branch from that commit.
 git branch my-temporary-work
 git checkout master
 git merge my-temporary-work
-```
-# Scenarios  
-
-## My work flow when I work on a branch
-I have:  
-   * a `local-repo` on my PC  
-   * another `local-repo` on my laptop  
-   * a `remote-repo`  
-
-I always make sure that my `remote-repo` is updated.
-when I start from one of my `local-repo`s, I follow these steps
-```shell
-# step 1: make a branch on remote-repo
-# step 2: check if any changes are made in local-repo
-git status
-# step 3: update my local-branch
-git remote update # to bring your remote refs up to date
-git status -uno # whether the branch you are tracking is ahead, behind or has diverged
-# step 5: bring the working remote-branch to my local-repo local-branch (use the same name for both branches)
-git pull <remote> <remote-branch>:<local-branch>
-# step 6: make changes
-# step 7: stage
-# step 8: commit
-# step 9: push changes to the working branch
-git push <remote> <local-branch>:<remote-branch>
-# step 10: go to remote-repo, i.e. GitHub, working branch and send a pull-request
-# step 11: accept the changes into remote-master
-# step 12: then at local
-git pull origin master
-# step 13: remove local and remote branches
-$ git push --delete <remote_name> <branch_name>
-$ git branch -D <branch_name>
-$ git remote prune origin
-# Deletes all stale remote-tracking branches. These stale branches have already been removed from the remote repository referenced by <name>, but are still locally available in "remotes/<name>".
-```
-# Relevant
-* to modify VSCode extnesions:
-```cpp
-"[git-commit]": {
-    "editor.rulers": [
-      72
-    ]
-  }
 ```
