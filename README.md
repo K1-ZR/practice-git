@@ -1,21 +1,38 @@
 I use this page for archiving what I learned about Git,
- mostly from [Pro Git]{https://git-scm.com/book/en/v2}. 
+ mostly from [Pro Git](https://git-scm.com/book/en/v2). 
 
-- [Install Git](#Install-Git)
-- [Basics](#Basics)
-- [Start](#Start)
-  - [From a](#From-a)
-  - [From](#From)
-- [Submit Changes](#Submit-Changes)
-- [Show changes](#Show-changes)
-- [Undo changes](#Undo-changes)
-- [Branch](#Branch)
-- [Remote server](#Remote-server)
-- [Tag](#Tag)
-- [Bug Fix](#Bug-Fix)
-  - [Bug search](#Bug-search)
-  - [Correcting bugs](#Correcting-bugs)
+- [Basics](#basics)
+- [Config](#config)
+    - [Username and email](#username-and-email)
+- [Install Git](#install-git)
+- [Basics](#basics-1)
+- [Start](#start)
+  - [From a](#from-a)
+  - [From](#from)
+- [Submit Changes](#submit-changes)
+- [Show changes](#show-changes)
+- [Undo changes](#undo-changes)
+- [Branch](#branch)
+- [Remote server](#remote-server)
+- [Tag](#tag)
+- [Bug Fix](#bug-fix)
+  - [Bug search](#bug-search)
+  - [Correcting bugs](#correcting-bugs)
+<!-- --------------------------------------------------------------- -->
+# Basics
 
+- Working Directory: a single checkout of one version of the project.
+- Staged Files: where Git stores will go into your next commit.
+- Committed Files: where Git stores the snapshots of the project. 
+  <!-- FIGURE 1 -->
+<!-- --------------------------------------------------------------- -->
+# Config
+### Username and email
+```git
+git config --global user.name "<your_name>"
+git config --global user.email <your_email>
+```
+To override the global config, run it without `--global`.
 <!-- --------------------------------------------------------------- -->
 # Install Git
 Install Git from [git-scm.com](https://git-scm.com/).
