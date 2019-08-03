@@ -2,23 +2,26 @@ I use this page for archiving what I learned about Git,
  mostly from [Pro Git](https://git-scm.com/book/en/v2). 
 
 - [Basics](#basics)
-      - [File status](#file-status)
-      - [Help](#help)
+  - [File status](#file-status)
+  - [Help](#help)
 - [Config](#config)
 - [Install Git](#install-git)
 - [Initialization](#initialization)
-      - [Initializing a repository in an existing directory](#initializing-a-repository-in-an-existing-directory)
-      - [Cloning a repository from an existing directory](#cloning-a-repository-from-an-existing-directory)
+  - [Initializing a repository in an existing directory](#initializing-a-repository-in-an-existing-directory)
+  - [Cloning a repository from an existing directory](#cloning-a-repository-from-an-existing-directory)
 - [Recording Changes](#recording-changes)
-      - [Track new files changes](#track-new-files-changes)
-      - [Stage modified files](#stage-modified-files)
-      - [Ignoring Files](#ignoring-files)
-      - [Commit changes](#commit-changes)
+  - [Track new files changes](#track-new-files-changes)
+  - [Stage modified files](#stage-modified-files)
+  - [Ignoring Files](#ignoring-files)
+  - [Commit changes](#commit-changes)
 - [Viewing Changes](#viewing-changes)
-      - [Difference between unstaged (working directory) vs staged](#difference-between-unstaged-working-directory-vs-staged)
-      - [Difference between staged vs committed](#difference-between-staged-vs-committed)
+  - [Difference between unstaged (working directory) vs staged](#difference-between-unstaged-working-directory-vs-staged)
+  - [Difference between staged vs committed](#difference-between-staged-vs-committed)
 - [Viewing the Commit History](#viewing-the-commit-history)
-- [Undo changes](#undo-changes)
+- [Undoing changes](#undoing-changes)
+- [Remotes](#remotes)
+  - [Fetching and pulling from remotes](#fetching-and-pulling-from-remotes)
+- [Tagging](#tagging)
 - [Branch](#branch)
 - [Remote server](#remote-server)
 - [Tag](#tag)
@@ -32,14 +35,14 @@ I use this page for archiving what I learned about Git,
 - **Staged Files**: where Git stores will go into your next commit.
 - **Committed Files**: where Git stores the snapshots of the project. 
   <!-- FIGURE 1 -->
-<img src="images/filestate.png" class="center" width="50%">.
+<img src="images/filestate.png" width="50%">.
 
-#### File status
+## File status
 Check files status:
 ```git
 git status
 ```
-#### Help
+## Help
 Get help about any keyword:
 ```git
 git help <verb>
@@ -65,7 +68,7 @@ Install Git from [git-scm.com](https://git-scm.com/).
 <!-- --------------------------------------------------------------- -->
 # Initialization
 
-#### Initializing a repository in an existing directory
+## Initializing a repository in an existing directory
 Change directory:
 ```git
 cd <repository-directory>
@@ -74,7 +77,7 @@ Initialize Git:
 ```git
 git init
 ```
-#### Cloning a repository from an existing directory
+## Cloning a repository from an existing directory
 Clone from a remote directory:
 ```git
 git clone <url>
@@ -83,15 +86,15 @@ git clone <url>
 <!-- --------------------------------------------------------------- -->
 # Recording Changes
 
-#### Track new files changes
+## Track new files changes
 ```git
 git add <file_name>
 ```
-#### Stage modified files
+## Stage modified files
 ```git
 git add <file_name>
 ```
-#### Ignoring Files
+## Ignoring Files
 Create a `.gitignore` file in the repository directory similar to:
 ```git
 # ignore all .a files
@@ -105,17 +108,17 @@ build/
 # ignore doc/notes.txt, but not doc/server/arch.txt
 doc/*.txt
 ```
-#### Commit changes
+## Commit changes
 ```git
 git commit -m "<my_message>"
 ```
 <!-- --------------------------------------------------------------- -->
 # Viewing Changes
-#### Difference between unstaged (working directory) vs staged
+## Difference between unstaged (working directory) vs staged
 ```git
 git diff [<file_name>]
 ```
-#### Difference between staged vs committed
+## Difference between staged vs committed
 ```git
 git diff --staged [<file_name>]
 ```
@@ -144,31 +147,77 @@ Options:
 - `-S <a_string>`: show commits changing the number of occurrence of the string
   
 Show the changes happened in a commit:
-```shell
+```git
 git show <commit_hash>
 ```
 
 Show who made the changes:
-```shell
+```git
 git blame <file_name> -L<line_number>
 ```
-
-
-
-
-# Undo changes
-* to unstage the changes
-```shell
-git reset <file_name>
+<!-- --------------------------------------------------------------- -->
+# Undoing changes
+Unstage a staged file:
+```git
+git reset HEAD <file_name>
 ```
-* Undoes all commits after commit, preserving changes locally
-```shell
-git reset <commit_hash_string>
-```
-* Fetch the last commit of the file
-```shell
+
+Revert the *working directory* back to the last committed
+```git
 git checkout -- <file_name>
 ```
+<!-- --------------------------------------------------------------- -->
+# Remotes
+Lists each remote: 
+```git
+git remote [options]
+```
+Options:
+- `-v`: shows remote URLs
+
+Show lists the remote URLs and the tracking branch:
+```git
+git remote show <remote>
+```
+
+Add a new remote explicitly:
+```git
+git remote add <remote_name> <url>
+```
+## Fetching and pulling from remotes
+Downloads all branches from the remote (just fetching without merging):
+```git
+git fetch <remote_name>
+```
+If your current branch is set up to track a remote branch, you can use the `git pull` to automatically fetch and then merge that remote branch into your current branch. 
+
+By default, `git clone` sets up your local master branch to track the remote master branch.
+
+<!-- --------------------------------------------------------------- -->
+# Tagging
+List tags:
+```git
+git tag
+```
+Annotate tag:
+```git
+git tag -a <tag_name> -m "<message>"
+```
+Tag a commit
+```git
+git tag -a <tag_name> <commit_hash>
+```
+
+Show the tag data:
+```git
+git show <tag_name>
+```
+
+Push tag to a remote server
+```git
+git push <remote_name> <tag_name>.
+```
+<!-- --------------------------------------------------------------- -->
 # Branch
 * create a branch. Git clones your current branch.
 ```shell
