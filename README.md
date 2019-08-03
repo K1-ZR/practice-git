@@ -15,8 +15,8 @@ I use this page for archiving what I learned about Git,
       - [Ignoring Files](#ignoring-files)
       - [Commit changes](#commit-changes)
 - [Viewing Changes](#viewing-changes)
-      - [Difference of unstaged (working directory) vs staged](#difference-of-unstaged-working-directory-vs-staged)
-      - [Difference of staged vs committed](#difference-of-staged-vs-committed)
+      - [Difference between unstaged (working directory) vs staged](#difference-between-unstaged-working-directory-vs-staged)
+      - [Difference between staged vs committed](#difference-between-staged-vs-committed)
 - [Viewing the Commit History](#viewing-the-commit-history)
 - [Undo changes](#undo-changes)
 - [Branch](#branch)
@@ -32,7 +32,7 @@ I use this page for archiving what I learned about Git,
 - Staged Files: where Git stores will go into your next commit.
 - Committed Files: where Git stores the snapshots of the project. 
   <!-- FIGURE 1 -->
-![](images/filestate.PNG)
+![](images\filestate.PNG)
 
 #### File status
 Check files status:
@@ -111,11 +111,11 @@ git commit -m "<my_message>"
 ```
 <!-- --------------------------------------------------------------- -->
 # Viewing Changes
-#### Difference of unstaged (working directory) vs staged
+#### Difference between unstaged (working directory) vs staged
 ```git
 git diff [<file_name>]
 ```
-#### Difference of staged vs committed
+#### Difference between staged vs committed
 ```git
 git diff --staged [<file_name>]
 ```
