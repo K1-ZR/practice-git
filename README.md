@@ -2,15 +2,22 @@ I use this page for archiving what I learned about Git,
  mostly from [Pro Git](https://git-scm.com/book/en/v2). 
 
 - [Basics](#basics)
+      - [File status](#file-status)
+      - [Help](#help)
 - [Config](#config)
-    - [Username and email](#username-and-email)
 - [Install Git](#install-git)
-- [Basics](#basics-1)
-- [Start](#start)
-  - [From a](#from-a)
-  - [From](#from)
-- [Submit Changes](#submit-changes)
-- [Show changes](#show-changes)
+- [Initialization](#initialization)
+      - [Initializing a repository in an existing directory](#initializing-a-repository-in-an-existing-directory)
+      - [Cloning a repository from an existing directory](#cloning-a-repository-from-an-existing-directory)
+- [Recording Changes](#recording-changes)
+      - [Track new files changes](#track-new-files-changes)
+      - [Stage modified files](#stage-modified-files)
+      - [Ignoring Files](#ignoring-files)
+      - [Commit changes](#commit-changes)
+- [Viewing Changes](#viewing-changes)
+      - [Difference of unstaged (working directory) vs staged](#difference-of-unstaged-working-directory-vs-staged)
+      - [Difference of staged vs committed](#difference-of-staged-vs-committed)
+- [Viewing the Commit History](#viewing-the-commit-history)
 - [Undo changes](#undo-changes)
 - [Branch](#branch)
 - [Remote server](#remote-server)
@@ -25,95 +32,130 @@ I use this page for archiving what I learned about Git,
 - Staged Files: where Git stores will go into your next commit.
 - Committed Files: where Git stores the snapshots of the project. 
   <!-- FIGURE 1 -->
+![](images/filestate.PNG)
+
+#### File status
+Check files status:
+```git
+git status
+```
+#### Help
+Get help about any keyword:
+```git
+git help <verb>
+```
+Get the more concise help:
+```git
+git <verb> -h
+```
 <!-- --------------------------------------------------------------- -->
 # Config
-### Username and email
+
+Change username and email
 ```git
-git config --global user.name "<your_name>"
-git config --global user.email <your_email>
+git config --global user.name "<my_name>"
+git config --global user.email <my_email>
 ```
 To override the global config, run it without `--global`.
+
 <!-- --------------------------------------------------------------- -->
 # Install Git
 Install Git from [git-scm.com](https://git-scm.com/).
-<!-- --------------------------------------------------------------- -->
-# Basics
 
-Check files status
-```shell
-git status
-```
-Get help 
-```shell
-git help <keyword>
-```
 <!-- --------------------------------------------------------------- -->
-# Start
-## From a
-Change directory
-```shell
+# Initialization
+
+#### Initializing a repository in an existing directory
+Change directory:
+```git
 cd <repository-directory>
 ```
-Initialize Git 
-```shell
+Initialize Git:
+```git
 git init
 ```
-## From
+#### Cloning a repository from an existing directory
+Clone from a remote directory:
+```git
+git clone <url>
+```
 
 <!-- --------------------------------------------------------------- -->
-# Submit Changes
-Any changes in directory    &#x27F6;    Stage    &#x27F6;    Commit  
-the **staged** changes means Git tracks them  
-the **committed** changes means Git archives them
+# Recording Changes
 
-Stage changes
-```shell
-git add <file name>
-#       -A or --all 
+#### Track new files changes
+```git
+git add <file_name>
 ```
-Commit changes
-```shell
-git commit -m '<message>'
+#### Stage modified files
+```git
+git add <file_name>
 ```
-# Show changes
-* show previous commits
-```shell
-git log
+#### Ignoring Files
+Create a `.gitignore` file in the repository directory similar to:
+```git
+# ignore all .a files
+*.a
+# but do track lib.a, even though .a are ignored
+!lib.a
+# only ignore the TODO file in the current directory, not subdir/TODO
+/TODO
+# ignore all files in any directory named build
+build/
+# ignore doc/notes.txt, but not doc/server/arch.txt
+doc/*.txt
 ```
-* show the changes happened in a commit
-```shell
-git show <commit_hash_string>
+#### Commit changes
+```git
+git commit -m "<my_message>"
 ```
-* show difference between unstaged changes and HEAD. HEAD is the tip of the current branch.
-```shell
-git diff HEAD <file_name>
+<!-- --------------------------------------------------------------- -->
+# Viewing Changes
+#### Difference of unstaged (working directory) vs staged
+```git
+git diff [<file_name>]
 ```
-* show the difference between staged changes and HEAD.
-```shell
-git diff HEAD --staged <file_name>
+#### Difference of staged vs committed
+```git
+git diff --staged [<file_name>]
 ```
-* if you want to see what you haven't git added yet
-```shell
-git diff <file_name>
-```
-* or if you want to see already added changes
-```shell
-git diff --cached <file_name>
-```
+Use `git difftool` instead of `git diff` for more visual comparison.
+
 **NOTE:** 
-Git diff header is in the form of @@ \<preimage-file-range> \<postimage-file-range> @@   
-* \<preimage-file-range> is in the form -\<start-line>,\<number-of-lines>  
-* \<postimage-file-range> is in the form of +\<start-line>,\<number-of-lines>.  
+Git diff header is in the form of 
+`@@ \<preimage-file-range> \<postimage-file-range> @@`.
 
-  * ' ': The lines common to both files.
-  * '+': A line was added here to the first file.
-  * '-': A line was removed here from the first file.
+where
+- `file-range` is in the form `-\<start-line>,\<number-of-lines>`  
+- `•`: The lines common to both files.
+- `+`: A line was added here to the first file.
+- `-`: A line was removed here from the first file.
+<!-- --------------------------------------------------------------- -->
+# Viewing the Commit History
+List the previous commits:
+```git
+git log [option]
+```
+Options:
+- `--patch`: shows the difference introduced in each commit
+- `--oneline`: prints each commit on a single line
+- `--oneline --graph`: adds a little ASCII graph showing your branch and merge history
+- `--since "DEC 1 2014" --until "DEC 5 2014"`: shows commits between two dates
+- `-S <a_string>`: show commits changing the number of occurrence of the string
+  
+Show the changes happened in a commit:
+```shell
+git show <commit_hash>
+```
 
-* Show who made the changes
+Show who made the changes:
 ```shell
 git blame <file_name> -L<line_number>
-#                     -L<start_line_number, end_line_number>
 ```
+
+
+
+
 # Undo changes
 * to unstage the changes
 ```shell
