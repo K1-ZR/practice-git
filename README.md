@@ -32,6 +32,7 @@ I use this page for archiving what I learned about Git,
 - **Staged Files**: where Git stores will go into your next commit.
 - **Committed Files**: where Git stores the snapshots of the project. 
   <!-- FIGURE 1 -->
+<img src="images/filestate.png" width="50%">.
 ![](images/filestate.png)
 
 #### File status
