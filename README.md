@@ -28,11 +28,11 @@ I use this page for archiving what I learned about Git,
 <!-- --------------------------------------------------------------- -->
 # Basics
 
-- Working Directory: a single checkout of one version of the project.
-- Staged Files: where Git stores will go into your next commit.
-- Committed Files: where Git stores the snapshots of the project. 
+- **Working Directory**: a single checkout of one version of the project.
+- **Staged Files**: where Git stores will go into your next commit.
+- **Committed Files**: where Git stores the snapshots of the project. 
   <!-- FIGURE 1 -->
-![](images\filestate.PNG)
+<img src="images/filestate.PNG" width=800 />
 
 #### File status
 Check files status:
