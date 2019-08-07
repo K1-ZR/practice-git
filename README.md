@@ -377,12 +377,15 @@ Git’s clone command does the following automatically:
 - sets up your local master branch to track the remote master branch (`origin/master`)
 
 <!-- figure of cloning -->
+<img src="images/clone.png" width="30%">
 
 ## Fetching 
 Downloads all branches from the remote (fetching is just downloading the data without merging):
 ```git
 git fetch <remote_name>
 ```
+<!-- figure of cloning -->
+<img src="images/fetch.png" width="80%">
 
 ## Pulling
 If your current branch is set up to track a remote branch, you can use the `git pull` to automatically fetch and then merge that remote branch into your current branch. 
