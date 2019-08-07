@@ -7,16 +7,16 @@ I use this page for archiving what I learned about Git,
   - [Help](#help)
 - [Config](#config)
 - [Initialization](#initialization)
-  - [Initializing a repository in an existing directory](#initializing-a-repository-in-an-existing-directory)
-  - [Cloning a repository from an existing directory](#cloning-a-repository-from-an-existing-directory)
+  - [Initializing](#initializing)
+  - [Cloning](#cloning)
 - [Recording Changes](#recording-changes)
-  - [Track new files changes](#track-new-files-changes)
-  - [Stage modified files](#stage-modified-files)
+  - [Tracking](#tracking)
+  - [Staging](#staging)
   - [Ignoring Files](#ignoring-files)
   - [Commit](#commit)
 - [Viewing Changes](#viewing-changes)
-  - [Difference between unstaged (working directory) vs staged](#difference-between-unstaged-working-directory-vs-staged)
-  - [Difference between staged vs committed](#difference-between-staged-vs-committed)
+  - [Unstaged vs staged](#unstaged-vs-staged)
+  - [Staged vs committed](#staged-vs-committed)
 - [Viewing the Commit History](#viewing-the-commit-history)
 - [Undoing changes](#undoing-changes)
 - [Branch](#branch)
@@ -27,10 +27,10 @@ I use this page for archiving what I learned about Git,
   - [Bug search](#bug-search)
   - [Correcting bugs](#correcting-bugs)
 - [Remotes](#remotes)
-  - [Cloning](#cloning)
+  - [Cloning](#cloning-1)
   - [Fetching](#fetching)
-- [Pulling from remotes](#pulling-from-remotes)
-- [Push](#push)
+  - [Pulling](#pulling)
+  - [Pushing](#pushing)
 <!-- --------------------------------------------------------------- -->
 # Install Git
 Install Git from [git-scm.com](https://git-scm.com/).
@@ -77,7 +77,9 @@ Get the more concise help:
 ```git
 git <verb> -h
 ```
-<!-- --------------------------------------------------------------- -->
+
+
+
 # Config
 
 Change username and email
@@ -87,34 +89,42 @@ git config --global user.email <my_email>
 ```
 To override the global config, run it without `--global`.
 
-<!-- --------------------------------------------------------------- -->
+
+
 # Initialization
 
-## Initializing a repository in an existing directory
-Change directory:
+## Initializing 
+Initialize a repository in an existing directory:
+- change directory:
 ```git
 cd <repository-directory>
 ```
-Initialize Git:
+- initialize Git:
 ```git
 git init
 ```
-## Cloning a repository from an existing directory
-Clone from a remote directory:
+## Cloning 
+Clone an existing remote repository: 
 ```git
 git clone <url>
 ```
-<!-- --------------------------------------------------------------- -->
+
+
+
 # Recording Changes
 
-## Track new files changes
+## Tracking
+Track new files:
 ```git
 git add <file_name>
 ```
-## Stage modified files
+
+## Staging
+Stage modified files:
 ```git
 git add <file_name>
 ```
+
 ## Ignoring Files
 Create a `.gitignore` file in the repository directory similar to:
 ```git
@@ -130,17 +140,23 @@ build/
 doc/*.txt
 ```
 ## Commit  
-Commit changes
+Commit *staged* changes:
 ```git
 git commit -m "<my_message>"
 ```
-<!-- --------------------------------------------------------------- -->
+
+
+
 # Viewing Changes
-## Difference between unstaged (working directory) vs staged
+
+## Unstaged vs staged
+Show difference between unstaged (working directory) vs staged:
 ```git
 git diff [<file_name>]
 ```
-## Difference between staged vs committed
+
+## Staged vs committed
+Show Difference between staged vs committed:
 ```git
 git diff --staged [<file_name>]
 ```
@@ -155,7 +171,9 @@ where
 - `•`: The lines common to both files.
 - `+`: A line was added here to the first file.
 - `-`: A line was removed here from the first file.
-<!-- --------------------------------------------------------------- -->
+
+
+
 # Viewing the Commit History
 List the previous commits:
 ```git
@@ -177,7 +195,9 @@ Show who made the changes:
 ```git
 git blame <file_name> -L<line_number>
 ```
-<!-- --------------------------------------------------------------- -->
+
+
+
 # Undoing changes
 Unstage a staged file:
 ```git
@@ -188,6 +208,8 @@ Revert the *working directory* back to the last committed
 ```git
 git checkout -- <file_name>
 ```
+
+
 
 # Branch
 
@@ -215,7 +237,6 @@ git checkout <branch_name>
 List branches:
 ```git
 git branch [options]
-# -a: 
 ```
 Options:
 - `-a`:list local and remote branches
@@ -233,7 +254,7 @@ git checkout <target_branch>
 git merge <source_branch>
 ```
 When there is no divergent work between *source branch* and *target branch*, Git simply move *target branch* pointer forward.
-This is called “fast-forward”.
+This is called “fast-forward” merge.
   <!-- FIGURE 3 -->
 <img src="images/fastforwardmerge.png" width="100%">
 
@@ -251,6 +272,9 @@ To deletes all stale remote-tracking branches:
 ```git
 git remote prune origin
 ```
+
+
+
 # Tagging
 List tags:
 ```git
@@ -282,6 +306,8 @@ Checkout a tag:
 git checkout <tag_name>
 ```
 
+
+
 # Bug Fix
 
 ## Bug search
@@ -312,7 +338,6 @@ Git automatically create a *detached HEAD* from that commit.
 - make changes; but your new commit won’t belong to any branch and will be unreachable, except by the exact commit hash
 - commit changes
 - create a new branch where you are, then switch to master and merge it
-
 
 
 
@@ -359,22 +384,18 @@ Downloads all branches from the remote (fetching is just downloading the data wi
 git fetch <remote_name>
 ```
 
-# Pulling from remotes
-
+## Pulling
 If your current branch is set up to track a remote branch, you can use the `git pull` to automatically fetch and then merge that remote branch into your current branch. 
 
 Pull changes to a local directory
 a pull is a fetch and a merge.
-```shell
+```git
 git pull <remote-name> <remote_branch-name>:<local_branch_name>
-#        origin        master 
-#        origin        myBranch:myBranch (use the same name)
-```
-# Push
-Push changes to a remote server:
-```shell
-git push <remote-name> <local-branch-name>:<remote_branch_name>
-#        origin        master 
-#        origin        myBranch:myBranch (use the same name)
 ```
 
+## Pushing
+Push changes to a remote server:
+```git
+git push <remote-name> <local-branch-name>:<remote_branch_name>
+```
+If a local branch is already tracking the remote branch, remote branch name can be omited.
