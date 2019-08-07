@@ -19,16 +19,18 @@ I use this page for archiving what I learned about Git,
   - [Difference between staged vs committed](#difference-between-staged-vs-committed)
 - [Viewing the Commit History](#viewing-the-commit-history)
 - [Undoing changes](#undoing-changes)
-- [Remotes](#remotes)
-  - [Fetching and pulling from remotes](#fetching-and-pulling-from-remotes)
-- [Tagging](#tagging)
 - [Branch](#branch)
-- [Remote server](#remote-server)
-- [Tag](#tag)
-  - [Detached HEAD](#detached-head)
+  - [Merging](#merging)
+  - [Conflict](#conflict)
+- [Tagging](#tagging)
 - [Bug Fix](#bug-fix)
   - [Bug search](#bug-search)
   - [Correcting bugs](#correcting-bugs)
+- [Remotes](#remotes)
+  - [Cloning](#cloning)
+  - [Fetching](#fetching)
+- [Pulling from remotes](#pulling-from-remotes)
+- [Push](#push)
 <!-- --------------------------------------------------------------- -->
 # Install Git
 Install Git from [git-scm.com](https://git-scm.com/).
@@ -186,34 +188,69 @@ Revert the *working directory* back to the last committed
 ```git
 git checkout -- <file_name>
 ```
-<!-- --------------------------------------------------------------- -->
-# Remotes
-Lists each remote: 
+
+# Branch
+
+A branch is a movable pointer to a commit. 
+Every time a commit is made, the current branch pointer moves forward automatically.
+
+Git uses `HEAD` to know the current branch. 
+`HEAD` is a pointer that always points to the current branch.
+
+When a new branch is created, Git creates a new pointer to move around. 
+
+  <!-- FIGURE 2 -->
+<img src="images/branching.png" width="100%">
+
+Create a branch (it just creates the branch without switching to that branch):
 ```git
-git remote [options]
+git branch <branch_name>
+```
+
+Switching to a branch (Git moves HEAD to point to the that branch):
+```git
+git checkout <branch_name>
+```
+
+List branches:
+```git
+git branch [options]
+# -a: 
 ```
 Options:
-- `-v`: shows remote URLs
+- `-a`:list local and remote branches
+- `-v`:show the last commit on each branch
 
-Show lists the remote URLs and the tracking branch:
+Delete a branch:
 ```git
-git remote show <remote>
+git branch -d <branch_name>
 ```
 
-Add a new remote explicitly:
-```git
-git remote add <remote_name> <url>
+## Merging
+Merge branches
+```shell
+git checkout <target_branch>
+git merge <source_branch>
 ```
-## Fetching and pulling from remotes
-Downloads all branches from the remote (just fetching without merging):
+When there is no divergent work between *source branch* and *target branch*, Git simply move *target branch* pointer forward.
+This is called “fast-forward”.
+  <!-- FIGURE 3 -->
+<img src="images/fastforwardmerge.png" width="100%">
+
+When the development history has diverged from some older point, i.g. the commit on the *target branch* isn’t a direct ancestor of *source branch*, Git does merging by creating a merge commit that has two parents.
+  <!-- FIGURE 4 -->
+<img src="images/basicmerge.png" width="100%">
+
+## Conflict
+When there is discrepancy between the same part of the same file differently of the two branches being merged.
+Merge conflict must be resolved manually or using `git mergetool`.
+
+
+Stale branches are the ones that have already been removed from the remote, but are still locally available in "remotes/<name>".
+To deletes all stale remote-tracking branches:
 ```git
-git fetch <remote_name>
+git remote prune origin
 ```
-If your current branch is set up to track a remote branch, you can use the `git pull` to automatically fetch and then merge that remote branch into your current branch. 
-
-By default, `git clone` sets up your local master branch to track the remote master branch.
-
-<!-- --------------------------------------------------------------- -->
 # Tagging
 List tags:
 ```git
@@ -244,151 +281,100 @@ Checkout a tag:
 ```git 
 git checkout <tag_name>
 ```
-<!-- --------------------------------------------------------------- -->
-# Branch
 
-A branch is a movable pointer to a commit. 
-Every time a commit is made, the current branch pointer moves forward automatically.
+# Bug Fix
 
-When a new branch is created, Git creates a new pointer to move around. 
+## Bug search
+To find the problematic commit, follow bisect (binary search commit) tool:
 
-Git uses `HEAD` to know the current branch. 
-`HEAD` is a pointer that always points to the current branch.
-
-  <!-- FIGURE 2 -->
-<img src="images/branching.png" width="80%">.
-
-Create a branch (it just creates the branch without switching to that branch):
+- start the process
 ```git
-git branch <branch_name>
+git bisect start
 ```
-
-Switching to a branch (Git moves HEAD to point to the that branch):
+- Tell Git that the current commit is bad
 ```git
-git checkout <branch_name>
+git bisect bad
 ```
+- tell Git the good commit
+```shell
+git bisect good <commit>
+```
+Git suggests the next commit that needs to be checked.
+ This process will be repeated until Git narrows the commits down to the problematic commit.  
 
-List branches:
+## Correcting bugs
+
+Checkout where the bug is added:
 ```git
-git branch [-a]
-# -a: list local and remote branches
+git checkout <commit>
+```
+Git automatically create a *detached HEAD* from that commit.
+- make changes; but your new commit won’t belong to any branch and will be unreachable, except by the exact commit hash
+- commit changes
+- create a new branch where you are, then switch to master and merge it
+
+
+
+
+# Remotes
+
+Lists each remote: 
+```git
+git remote [options]
+```
+Options:
+- `-v`: shows remote URLs
+
+Show lists the remote URLs and the tracking branch:
+```git
+git remote show <remote>
 ```
 
-* merge the branch to master
-```shell
-git checkout master
-git merge <branch_name>
+Add a new remote explicitly:
+```git
+git remote add <remote_name> <url>
 ```
-* delete a branch
-```shell
-git branch -d <branch_name>
-```
-* 
-```shell
-# Deletes all stale remote-tracking branches. 
-# These stale branches have already been removed from the remote, 
-# but are still locally available in "remotes/<name>".
-git remote prune origin
-```
-# Remote server
-remote server (usually called as origin)  
-push &#x2191;  &#x2193; pull  
-local directory
-* clone an existing remote repo to your local directory
-```shell
-# makes a directory with the repo name
-git clone <remote_URL>
-```
-* add a remote server to your local directory
-multiple remote can be added to a local directory
-```shell
-git remote add <remote_name> <remote_URL>
-#               origin       https...
-```
-* remove a remote
+
+Remove a remote:
 ```shell
 git remote rm <remote_name>
 ```
-* get info about remote
-```shell
-git remote [-V]
+
+## Cloning
+Clone an existing remote repository to your local directory:
+```git
+git clone <remote_url>
 ```
-* list branches on remote
-```shell
-git remote show <remote-name>
+Git’s clone command does the following automatically:
+- names the remote `origin` for you, 
+- pulls down all its data, creates a pointer to where its master branch is, and names it `origin/master` locally.
+- creates a local `master` branch starting at the same place as origin’s master branch, so one has something to work from.
+- sets up your local master branch to track the remote master branch (`origin/master`)
+
+<!-- figure of cloning -->
+
+## Fetching 
+Downloads all branches from the remote (fetching is just downloading the data without merging):
+```git
+git fetch <remote_name>
 ```
-* pull changes to a local directory
+
+# Pulling from remotes
+
+If your current branch is set up to track a remote branch, you can use the `git pull` to automatically fetch and then merge that remote branch into your current branch. 
+
+Pull changes to a local directory
 a pull is a fetch and a merge.
 ```shell
 git pull <remote-name> <remote_branch-name>:<local_branch_name>
 #        origin        master 
 #        origin        myBranch:myBranch (use the same name)
 ```
-* push changes to a remote server
+# Push
+Push changes to a remote server:
 ```shell
 git push <remote-name> <local-branch-name>:<remote_branch_name>
 #        origin        master 
 #        origin        myBranch:myBranch (use the same name)
 ```
-# Tag
-Its difference with the branch is that you cannot commit to a tag.
-* setting a tag
-```shell
-git tag -a <tage_name> [commit_hash_string] -m '<message>'
-# the tag will refer to the commit of the branch you are currently on
-# if commit hash is omitted, the tag will refer to the most recent commit
-```
-* show tags
-```shell
-git tag
-```
-* show a specific tag
-```shell
-git show <tag_name>
-```
-* push a tag to remote
-```shell
-git push origin <tag_name>
-```
-* fetch a tag
-```shell
-git checkout <tag_name>
-```
-## Detached HEAD
-In “detached HEAD” state, if you make changes and then create a commit, the tag will stay the same, but your new commit won’t belong to any branch and will be unreachable, except by the exact commit hash. Thus, if you need to make changes — say you’re fixing a bug on an older version, for instance — you will generally want to create a branch:
-```git
-git checkout -b <branch_name> <commit>
-```
-# Bug Fix
-## Bug search
-* in order to find the problematic commit, follow these:
-it uses bisect (binary search commit)
-```shell
-# start the process
-git bisect start
-```
-```shell
-# tell Git that the current commit is bad
-git bisect bad
-```
-```shell
-# tell Git the good commit
-git bisect good <commit_hash_string>
-```
-Git suggest the next commit that needs to be checked. This process will be repeated 
-until Git narrows commits down to the problematic commit.  
 
-## Correcting bugs
-* Checkout where the bug is added
-```shell
-git checkout <commit_hash_string>
-```
-Git automatically create a detached branch from that commit.
-* Make changes
-* commit changes
-* Create a new branch where you are, then switch to master and merge it:
-```shell
-git branch my-temporary-work
-git checkout master
-git merge my-temporary-work
-```
