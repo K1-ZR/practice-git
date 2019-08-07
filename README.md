@@ -31,6 +31,13 @@ I use this page for archiving what I learned about Git,
   - [Fetching](#fetching)
   - [Pulling](#pulling)
   - [Pushing](#pushing)
+  - [Tracking](#tracking-1)
+- [Rebasing](#rebasing)
+- [Stashing and cleaning](#stashing-and-cleaning)
+  - [Stashing](#stashing)
+  - [Cleaning](#cleaning)
+- [Forking](#forking)
+- [Signing](#signing)
 <!-- --------------------------------------------------------------- -->
 # Install Git
 Install Git from [git-scm.com](https://git-scm.com/).
@@ -124,6 +131,10 @@ Stage modified files:
 ```git
 git add <file_name>
 ```
+Interactive staging:
+```git
+git add --interactive
+```
 
 ## Ignoring Files
 Create a `.gitignore` file in the repository directory similar to:
@@ -185,6 +196,10 @@ Options:
 - `--oneline --graph`: adds a little ASCII graph showing your branch and merge history
 - `--since "DEC 1 2014" --until "DEC 5 2014"`: shows commits between two dates
 - `-S <a_string>`: show commits changing the number of occurrence of the string
+- `<branch_B> --not <branch_A>`: show all commits reachable from `<ref_B>` that aren’t reachable from `<ref_A>`.
+  - `<branch> --not master`: show all commits new commits on `<branch>` that aren’t in `master`.
+  - `HEAD --not <remote>/<branch>`:show what you’re about to push to a remote
+
   
 Show the changes happened in a commit:
 ```git
@@ -241,6 +256,7 @@ git branch [options]
 Options:
 - `-a`:list local and remote branches
 - `-v`:show the last commit on each branch
+- `-vv`:show tracking branches
 
 Delete a branch:
 ```git
@@ -377,28 +393,94 @@ Git’s clone command does the following automatically:
 - sets up your local master branch to track the remote master branch (`origin/master`)
 
 <!-- figure of cloning -->
-<img src="images/clone.png" width="30%">
+<img src="images/clone.png" width="100%">
 
 ## Fetching 
 Downloads all branches from the remote (fetching is just downloading the data without merging):
 ```git
-git fetch <remote_name>
+git fetch [Options]
 ```
+- `<remote_name>`:to fetch from a remote
+- `--all`: to fetch from all remotes
 <!-- figure of cloning -->
-<img src="images/fetch.png" width="80%">
+<img src="images/fetch.png" width="100%">
 
 ## Pulling
-If your current branch is set up to track a remote branch, you can use the `git pull` to automatically fetch and then merge that remote branch into your current branch. 
-
-Pull changes to a local directory
-a pull is a fetch and a merge.
+`pull` is a `fetch` immediately followed by a `merge`.
+Pull from a remote branch:
 ```git
-git pull <remote-name> <remote_branch-name>:<local_branch_name>
+git pull <remote_name> <remote_branch_name>:<local_branch_name>
 ```
 
 ## Pushing
 Push changes to a remote server:
 ```git
-git push <remote-name> <local-branch-name>:<remote_branch_name>
+git push <remote_name> <local_branch_name>:<remote_branch_name>
 ```
-If a local branch is already tracking the remote branch, remote branch name can be omited.
+If a local branch is already tracking the remote branch, remote branch name can be omitted.
+
+## Tracking 
+
+If a local branch is set to track a remote branch, you can use `git pull` and `git push` without mentioning the remote branch.
+
+Create a local branch (*tracking branch*) that track remote branch (*upstream branch*):
+```
+git checkout -b <local_branch> <remote>/<remote_branch>
+```
+
+
+# Rebasing
+*under construction*
+
+
+
+# Stashing and cleaning
+
+## Stashing
+Stashing takes the working directory including your modified tracked files and staged changes and saves it on a stack of that  can be reapplied later (even on a different branch).
+
+To stash the changes:
+```git
+git stash
+```
+
+To see which stashes have been stored:
+```git
+git stash list
+```
+
+To reapply a previous stash to the working directory:
+```git
+git stash apply stash@{<stash_number>}
+```
+
+To drop a stash:
+```git
+git stash drop stash@{<stash_number>}
+```
+
+## Cleaning
+T get rid of them; that’s what the git clean command is for.
+
+
+# Forking
+Forking workflow in GitHub:
+- fork the project
+- clone the fork repository to local repository
+- create a topic branch from master
+- make some commits 
+- push this branch to GitHub fork repository
+- open a Pull Request on GitHub
+- the project owner merges or closes the Pull Request
+- sync the updated master back to your fork
+
+If you want to keep your local repository up-to-date,
+- add the original repository as a new remote
+- fetch from it
+- merge the main branch of that repository into your topic branch
+- fix any issues
+- push it back up to the same branch that the Pull Request is opened on 
+
+# Signing 
+*under construction*
+
