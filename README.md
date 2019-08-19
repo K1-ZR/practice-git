@@ -19,6 +19,8 @@ I use this page for archiving what I learned about Git,
   - [Staged vs committed](#staged-vs-committed)
 - [Viewing the Commit History](#viewing-the-commit-history)
 - [Undoing changes](#undoing-changes)
+  - [Reset](#reset)
+  - [Checkout](#checkout)
 - [Branch](#branch)
   - [Merging](#merging)
   - [Conflict](#conflict)
@@ -50,7 +52,7 @@ Git store data as a series of snapshots of directory.
 - **Staged Files**: where Git stores will go into your next commit.
 - **Committed Files**: where Git stores the snapshots of the project. 
   <!-- FIGURE 1 -->
-<img src="images/filestate.png" width="50%">.
+<img src="images/filestate.png" width="100%">.
 
 When one **stages**, Git
 - computes a checksum for each file (the SHA-1 hash)
@@ -71,6 +73,7 @@ In general, git repository has the following objects:
 - commit with the pointer to that root tree and all the commit metadata
 
 ## File status
+In Git, status means the difference between *Working Directory*, *Staged Files*, and *Committed Files*.
 Check files status:
 ```git
 git status
@@ -84,9 +87,9 @@ Get the more concise help:
 ```git
 git <verb> -h
 ```
-
-
-
+<!--  -->
+<!--  -->
+<!--  -->
 # Config
 
 Change username and email
@@ -95,9 +98,9 @@ git config --global user.name "<my_name>"
 git config --global user.email <my_email>
 ```
 To override the global config, run it without `--global`.
-
-
-
+<!--  -->
+<!--  -->
+<!--  -->
 # Initialization
 
 ## Initializing 
@@ -115,9 +118,9 @@ Clone an existing remote repository:
 ```git
 git clone <url>
 ```
-
-
-
+<!--  -->
+<!--  -->
+<!--  -->
 # Recording Changes
 
 ## Tracking
@@ -155,9 +158,9 @@ Commit *staged* changes:
 ```git
 git commit -m "<my_message>"
 ```
-
-
-
+<!--  -->
+<!--  -->
+<!--  -->
 # Viewing Changes
 
 ## Unstaged vs staged
@@ -214,37 +217,55 @@ git blame <file_name> -L<line_number>
 
 
 # Undoing changes
+## Reset
 Unstage a staged file:
 ```git
-git reset HEAD <file_name>
+git reset [options] HEAD~
 ```
+Options:
+- `--soft`:only move the branch `HEAD`
+- `--mixed` (default):move the branch `HEAD` and make the index look like `HEAD`
+- `--hard`:move the branch `HEAD` and make the index look like `HEAD`, and make the working directory look like the index
+  <!-- FIGURE reset -->
+<img src="images/reset.png" width="100%">.
 
+If in `reset` command a path is specified, `reset` will limit its actions to a specific file so it cannot move the `HEAD`. But `reset` proceeds with partially updating the index and working directory.
+
+```git
+git reset [options] <file_name>
+```
+Options:
+- `--mixed`(default): unstage the file (opposite of `add`) 
+- `--hard`:revert the changes in *staging area* and *working directory*
+
+## Checkout
 Revert the *working directory* back to the last committed
 ```git
 git checkout -- <file_name>
 ```
-
-
-
+This need to be followed by *stashing* or *cleaning*. 
+<!--  -->
+<!--  -->
+<!--  -->
 # Branch
 
 A branch is a movable pointer to a commit. 
 Every time a commit is made, the current branch pointer moves forward automatically.
-
-Git uses `HEAD` to know the current branch. 
-`HEAD` is a pointer that always points to the current branch.
-
 When a new branch is created, Git creates a new pointer to move around. 
 
   <!-- FIGURE 2 -->
 <img src="images/branching.png" width="100%">
+
+Git uses `HEAD` to know the current branch. 
+`HEAD` is the pointer to the current branch reference, which is in turn a pointer to the last commit made on that branch.
+That means `HEAD` will be the parent of the next commit.
 
 Create a branch (it just creates the branch without switching to that branch):
 ```git
 git branch <branch_name>
 ```
 
-Switching to a branch (Git moves HEAD to point to the that branch):
+Checkout a branch (git moves HEAD to point to the new branch ref, populates your index with the snapshot of that commit, then copies the contents of the index into your working Directory):
 ```git
 git checkout <branch_name>
 ```
@@ -271,11 +292,11 @@ git merge <source_branch>
 ```
 When there is no divergent work between *source branch* and *target branch*, Git simply move *target branch* pointer forward.
 This is called “fast-forward” merge.
-  <!-- FIGURE 3 -->
+  <!-- FIGURE fastforward merge-->
 <img src="images/fastforwardmerge.png" width="100%">
 
 When the development history has diverged from some older point, i.g. the commit on the *target branch* isn’t a direct ancestor of *source branch*, Git does merging by creating a merge commit that has two parents.
-  <!-- FIGURE 4 -->
+  <!-- FIGURE basic merge -->
 <img src="images/basicmerge.png" width="100%">
 
 ## Conflict
@@ -288,9 +309,9 @@ To deletes all stale remote-tracking branches:
 ```git
 git remote prune origin
 ```
-
-
-
+<!--  -->
+<!--  -->
+<!--  -->
 # Tagging
 List tags:
 ```git
@@ -321,9 +342,9 @@ Checkout a tag:
 ```git 
 git checkout <tag_name>
 ```
-
-
-
+<!--  -->
+<!--  -->
+<!--  -->
 # Bug Fix
 
 ## Bug search
@@ -354,9 +375,9 @@ Git automatically create a *detached HEAD* from that commit.
 - make changes; but your new commit won’t belong to any branch and will be unreachable, except by the exact commit hash
 - commit changes
 - create a new branch where you are, then switch to master and merge it
-
-
-
+<!--  -->
+<!--  -->
+<!--  -->
 # Remotes
 
 Lists each remote: 
@@ -402,7 +423,7 @@ git fetch [Options]
 ```
 - `<remote_name>`:to fetch from a remote
 - `--all`: to fetch from all remotes
-<!-- figure of cloning -->
+<!-- figure of fetching -->
 <img src="images/fetch.png" width="100%">
 
 ## Pulling
@@ -427,13 +448,14 @@ Create a local branch (*tracking branch*) that track remote branch (*upstream br
 ```
 git checkout -b <local_branch> <remote>/<remote_branch>
 ```
-
-
+<!--  -->
+<!--  -->
+<!--  -->
 # Rebasing
 *under construction*
-
-
-
+<!--  -->
+<!--  -->
+<!--  -->
 # Stashing and cleaning
 
 ## Stashing
@@ -461,9 +483,11 @@ git stash drop stash@{<stash_number>}
 
 ## Cleaning
 T get rid of them; that’s what the git clean command is for.
-
-
+<!--  -->
+<!--  -->
+<!--  -->
 # Forking
+
 Forking workflow in GitHub:
 - fork the project
 - clone the fork repository to local repository
@@ -480,7 +504,9 @@ If you want to keep your local repository up-to-date,
 - merge the main branch of that repository into your topic branch
 - fix any issues
 - push it back up to the same branch that the Pull Request is opened on 
-
+<!--  -->
+<!--  -->
+<!--  -->
 # Signing 
 *under construction*
 
