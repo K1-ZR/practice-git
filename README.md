@@ -19,7 +19,7 @@ I use this page for archiving what I learned about Git,
 [Signing](#signing)
 <!-- --------------------------------------------------------------- -->
 # Install Git
-Install Git from [git-scm.com](https://git-scm.com/).
+Install Git from [git-scm.com](https://git-scm.com/)
 
 <!-- --------------------------------------------------------------- -->
 # Basics
