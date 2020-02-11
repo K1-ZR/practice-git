@@ -1,22 +1,22 @@
 I use this page for archiving what I learned about Git,
  mostly from [Pro Git](https://git-scm.com/book/en/v2). 
 
-- [Install Git](#install-git)
-- [Basics](#basics)
-- [Config](#config)
-- [Initialization](#initialization)
-- [Recording Changes](#recording-changes)
-- [Viewing Changes](#viewing-changes)
-- [Viewing the Commit History](#viewing-the-commit-history)
-- [Undoing changes](#undoing-changes)
-- [Branch](#branch)
-- [Tagging](#tagging)
-- [Bug Fix](#bug-fix)
-- [Remotes](#remotes)
-- [Rebasing](#rebasing)
-- [Stashing and cleaning](#stashing-and-cleaning)
-- [Forking](#forking)
-- [Signing](#signing)
+[Install Git](#install-git)
+&#9679; [Basics](#basics)
+&#9679; [Config](#config)
+&#9679; [Initialization](#initialization)
+&#9679; [Recording Changes](#recording-changes)
+&#9679; [Viewing Changes](#viewing-changes)
+&#9679; [Viewing the Commit History](#viewing-the-commit-history)
+&#9679; [Undoing changes](#undoing-changes)
+&#9679; [Branch](#branch)
+&#9679; [Tagging](#tagging)
+&#9679; [Bug Fix](#bug-fix)
+&#9679; [Remotes](#remotes)
+&#9679; [Rebasing](#rebasing)
+&#9679; [Stashing and cleaning](#stashing-and-cleaning)
+&#9679; [Forking](#forking)
+[Signing](#signing)
 <!-- --------------------------------------------------------------- -->
 # Install Git
 Install Git from [git-scm.com](https://git-scm.com/).
