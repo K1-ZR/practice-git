@@ -7,7 +7,7 @@ I use this page for archiving what I learned about Git,
 &#9679; [Initialization](#initialization)
 &#9679; [Recording Changes](#recording-changes)
 &#9679; [Viewing Changes](#viewing-changes)
-&#9679; [Viewing the Commit History](#viewing-the-commit-history)
+&#9679; [Viewing Commit History](#viewing-commit-history)
 &#9679; [Undoing changes](#undoing-changes)
 &#9679; [Branch](#branch)
 &#9679; [Tagging](#tagging)
@@ -67,7 +67,7 @@ git <verb> -h
 <!--  -->
 <!--  -->
 <!--  -->
-# Config
+## Config
 
 Change username and email
 ```git
@@ -165,7 +165,7 @@ where
 
 
 
-# Viewing the Commit History
+# Viewing Commit History
 List the previous commits:
 ```git
 git log [option]
