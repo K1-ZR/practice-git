@@ -16,7 +16,7 @@ I use this page for archiving what I learned about Git,
 &#9679; [Rebasing](#rebasing)
 &#9679; [Stashing and cleaning](#stashing-and-cleaning)
 &#9679; [Forking](#forking)
-[Signing](#signing)
+&#9679; [Signing](#signing)
 <!-- --------------------------------------------------------------- -->
 # Install Git
 Install Git from [git-scm.com](https://git-scm.com/)
@@ -139,18 +139,16 @@ git commit -m "<my_message>"
 <!--  -->
 <!--  -->
 # Viewing Changes
+from [this](https://stackoverflow.com/a/47684920/9220905)
 
-## Unstaged vs staged
-Show difference between unstaged (working directory) vs staged:
 ```git
-git diff [<file_name>]
+git diff [option] [<file_name>]
 ```
+- ` ` diff between unstaged (working directory) vs staged:
+- `HEAD` diff between unstaged (working directory) vs last commit (HEAD) 
+- `--Staged` diff between staged vs last commit (HEAD):
 
-## Staged vs committed
-Show Difference between staged vs committed:
-```git
-git diff --staged [<file_name>]
-```
+**NOTE:** 
 Use `git difftool` instead of `git diff` for more visual comparison.
 
 **NOTE:** 
