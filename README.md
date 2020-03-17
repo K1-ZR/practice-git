@@ -178,7 +178,10 @@ Options:
   - `<branch> --not master`: show all commits new commits on `<branch>` that aren’t in `master`.
   - `HEAD --not <remote>/<branch>`:show what you’re about to push to a remote
 
-  
+```git
+git log --all --graph --decorate --oneline
+```
+
 Show the changes happened in a commit:
 ```git
 git show <commit_hash>
@@ -188,7 +191,6 @@ Show who made the changes:
 ```git
 git blame <file_name> -L<line_number>
 ```
-
 
 
 # Undoing changes
